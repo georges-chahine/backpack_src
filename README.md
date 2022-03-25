@@ -17,6 +17,7 @@ sudo service robot status
 To restart the drivers:
 
 sudo service robot stop
+
 sudo service robot start
 
 OR
