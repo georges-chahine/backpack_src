@@ -1,0 +1,2 @@
+rosrun --prefix 'gdb -ex run' project_laser project_laser
+
