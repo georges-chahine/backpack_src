@@ -6,6 +6,9 @@ Some of the third party drivers are owned by their respective authors. I claim n
 The vectornav driver, the pointgrey camera driver, the RS bPearl driver, the reach RTK ROS node, the robot upstart package.
 
 -------------------
+
+-Make sure the path in line 6 is correct in recordPearl.sh.
+
 To start recording, run:
 
 ./recordPearl.sh
