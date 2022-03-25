@@ -47,3 +47,4 @@ Save the file and reboot.
 ---------------------------
 
 Wifi password: 29103751
+Backpack IP: 192.168.10.10
