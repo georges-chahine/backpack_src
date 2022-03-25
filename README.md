@@ -43,3 +43,7 @@ Write the following into the file
 KERNEL=="ttyUSB0", MODE="0666" into the file
 
 Save the file and reboot.
+
+---------------------------
+
+Wifi password: 29103751
