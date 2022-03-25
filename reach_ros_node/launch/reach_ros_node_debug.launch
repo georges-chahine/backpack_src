@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<launch>
+    <node name="reach_ros_node" pkg="reach_ros_node" type="nmea_tcp_driver"  output="screen">
+        <param name="host" value="192.168.2.15"/>
+        <param name="port" value="7777"/>
+        <param name="publish_nmea" value="True"/>
+        <param name="use_magnetic_orientation" value="False"/>
+    </node>
+</launch>
