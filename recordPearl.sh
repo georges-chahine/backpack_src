@@ -3,7 +3,7 @@ RED='\033[0;31m'
 YEL='\033[0;33m'
 NC='\033[0m'
 
-cp /home/georges/catkin_ws/src/pointgrey_camera_driver/pearllaunch/* /home/georges/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch
+cp ~/catkin_ws/src/pointgrey_camera_driver/pearllaunch/* ~/catkin_ws/src/pointgrey_camera_driver/pointgrey_camera_driver/launch
 
 sleep 10
 
