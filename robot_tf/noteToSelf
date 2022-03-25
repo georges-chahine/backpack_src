@@ -1,0 +1,16 @@
+/usr/sbin/robot-start ---> edit and add export HOME=/home/georges
+
+
+
+second problem:
+
+
+In order to solve the problem, perform the following steps:
+
+sudo gedit /etc/udev/rules.d/my-usbaccess.rules
+
+Write the following into the file
+
+KERNEL=="ttyUSB0", MODE="0666" into the file
+
+Save the file and reboot.

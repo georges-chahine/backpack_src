@@ -1,0 +1,22 @@
+<launch>
+
+ <!-- INS -->
+
+  <node pkg="vectornav" type="vn200_node" name="vectornav" >
+ </node>
+
+ <!-- INS py -->
+
+  <node pkg="robot_tf" type="robot_tf" name="robot_tf" >
+  </node>
+  <node pkg="vectornav" type="vn_sensor_msgs.py" name="vectornavp" >
+  </node>
+<include file="$(find pointgrey_camera_driver)/launch/camera.launch"/>
+
+<include file="$(find urg_node)/launch/urg_lidar.launch"/>
+
+
+
+</launch>
+
+

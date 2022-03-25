@@ -1,0 +1,19 @@
+<launch>
+ <!-- tf -->
+
+  <node pkg="robot_tf" type="robot_tf" name="robot_tf" >
+ </node>
+
+  <node pkg="camera_shutter_control" type="camera_shutter_control" name="camera_shutter_control" >
+ </node>
+
+$HOME$=/home/georges/
+<include file="$(find vectornav)/launch/vectornav.launch"/>
+<include file="$(find pointgrey_camera_driver)/launch/camera1.launch"/>
+<include file="$(find pointgrey_camera_driver)/launch/camera2.launch"/>
+<include file="$(find pointgrey_camera_driver)/launch/camera3.launch"/>
+<include file="$(find rslidar_pointcloud)/launch/rs_bpearl.launch"/>
+
+</launch>
+
+
