@@ -22,10 +22,7 @@ protected:
     void IMUCallback(const sensor_msgs::Imu::ConstPtr& msg)
     {
         pi=3.1415926536;
-        //q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
-        //tf::Quaternion q(0,0,0,1);
-        //q0[0]=0; q0[1]=0; q0[2]=0; q0[3]=1;
-		//q00[0]=0; q00[1]=0; q00[2]=0; q00[3]=1;
+
         q00 = tf::createQuaternionFromRPY(pi, 0, 0);
         q1 = tf::createQuaternionFromRPY(0, 0, pi/2);
         q0 = tf::createQuaternionFromRPY(pi, 0, 0);
@@ -65,7 +62,7 @@ protected:
                         ros::Time::now(),"imu", "camera1"));
 
 
-        tf::Quaternion qLaser = tf::createQuaternionFromRPY(pi, 0, 0*pi);
+        tf::Quaternion qLaser = tf::createQuaternionFromRPY(pi, 0, 0);
         broadcaster.sendTransform(
                     tf::StampedTransform(
                         tf::Transform(qLaser, tf::Vector3(0.01848, -0.05937, -0.113)),
