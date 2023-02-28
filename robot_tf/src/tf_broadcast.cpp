@@ -45,19 +45,6 @@ protected:
                         tf::Transform(q2, tf::Vector3(0,0,0.3)),
                         ros::Time::now(),"base_link", "imu"));
 
-    //    broadcaster.sendTransform(
-    //                tf::StampedTransform(
-    //                    tf::Transform(q0, tf::Vector3(-0.2, 0.19, 0)),
-    //                    ros::Time::now(),"imu", "base_link"));
-        //from one of the edge screws (cam1 and cam2), the sensor is at:
-        //      y: 12.032 + 3  -17.99 =-2.958 mm
-        //     z: 14.5 mm out of the plane
-
-
-
-
-
-
         tf::Quaternion qCam1 = tf::createQuaternionFromRPY(pi/2, 0, 0);  //was -pi/2  pi
         broadcaster.sendTransform(
                     tf::StampedTransform(
@@ -84,102 +71,6 @@ protected:
                         tf::Transform(qLaser, tf::Vector3(0.01848, -0.05937, -0.113)),
                         ros::Time::now(),"imu", "laser"));
 
-    }
-
-    /*
-    void GPSCallback(const geometry_msgs::Point::ConstPtr& msg)
-    {
-
-
-        if (count2==false){
-
-            double x=msg->x, y=msg->y, z=msg->z;
-            //        std::cout << "GPS SIGNAL FOUND" <<std::endl;
-            //      geo_pt.latitude = msg->latitude;
-            //      geo_pt.longitude = msg->longitude;
-            //     geo_pt.altitude = msg->altitude;
-            if (count) {
-                count=false;
-                //     std::cout <<"ERRORRRRR"<<std::endl;
-                x_init=x;
-                y_init=y;
-                z_init=z;
-
-            }
-        }
-
-    }
-
-      void GPSCallback2(const geometry_msgs::Point::ConstPtr& msg)
-    {
-
-        if (msg->x>0){
-            double x=msg->x, y=msg->y, z=msg->z;
-            //        std::cout << "GPS SIGNAL FOUND" <<std::endl;
-            //      geo_pt.latitude = msg->latitude;
-            //      geo_pt.longitude = msg->longitude;
-            //     geo_pt.altitude = msg->altitude;
-            if (count2) {
-                count2=false;
-                //     std::cout <<"ERRORRRRR"<<std::endl;
-                x_init2=x;
-                y_init2=y;
-                z_init2=z;
-
-            }
-            broadcaster.sendTransform(
-                        tf::StampedTransform(
-                            tf::Transform(q0, tf::Vector3(x-x_init,y-y_init, 0.3)),
-                            ros::Time::now(),"gps_start", "gps_current"));
-            //   ROS_INFO("UTM coordinates z: [%f]", utm_pt.altitude);
-            ROS_INFO("GPS pose RAW  x: [%f], y: [%f], z: [%f]", x-x_init, y-y_init, z-z_init);
-
-            //   ROS_INFO("UTM coordinates z: [%f]", utm_pt.altitude);
-            ROS_INFO("GPS pose INS  x: [%f], y: [%f], z: [%f]", x-x_init2, y-y_init2, z-z_init2);
-        }
-            else
-            {
-                // std::cout << "NO GPS SIGNAL" <<std::endl;
-                broadcaster.sendTransform(
-                            tf::StampedTransform(
-                                tf::Transform(q0, tf::Vector3(0,0, 0.3)),
-                                ros::Time::now(),"gps_start", "gps_current"));
-            }
-
-
-    }
-
-    void GPSCallback3(const sensor_msgs::NavSatFix::ConstPtr& msg)
-    {
-
-        if (msg->status.service>4){
-            //        std::cout << "GPS SIGNAL FOUND" <<std::endl;
-            geo_pt.latitude = msg->latitude;
-            geo_pt.longitude = msg->longitude;
-            geo_pt.altitude = msg->altitude;
-            TF();
-        }
-
-    }
-
-    void TF()
-    {
-        geodesy::UTMPoint utm_pt(geo_pt);
-
-        //      std::cout <<count<<std::endl;
-        if (count3) {
-            count3=false;
-            //     std::cout <<"ERRORRRRR"<<std::endl;
-            x_init3=utm_pt.easting;
-            y_init3=utm_pt.northing;
-            z_init3=utm_pt.altitude;
-        }
-
-        ROS_INFO("GPS pose UTM x: [%f], y: [%f], z: [%f]", utm_pt.easting-x_init3, utm_pt.northing-y_init3, utm_pt.altitude-z_init3);
-
-    }
-
-  */
 
     void GPSCallback4(const sensor_msgs::NavSatFix::ConstPtr& msg)
     {
@@ -194,10 +85,6 @@ protected:
             double y=utm_pt.easting;
             double z=-utm_pt.altitude;
 
-            //        std::cout << "GPS SIGNAL FOUND" <<std::endl;
-            //      geo_pt.latitude = msg->latitude;
-            //      geo_pt.longitude = msg->longitude;
-            //     geo_pt.altitude = msg->altitude;
             if (flag) {
                 flag=false;
                 //     std::cout <<"ERRORRRRR"<<std::endl;
@@ -229,8 +116,6 @@ public:
     TfTree() : n("~") {
         ros::Duration(0.5).sleep();
         sub = n.subscribe("/vectornav/IMU", 1, &TfTree::IMUCallback,this);
-        //   sub2 = n.subscribe("/vectornav/GPS_XYZ", 1, &TfTree::GPSCallback,this);
-        //   sub3 = n.subscribe("/vectornav/GPS_INS_XYZ", 1, &TfTree::GPSCallback2,this);
         sub4 = n.subscribe("/vectornav/GPS_INS", 1, &TfTree::GPSCallback4,this);
         flag=true;
     }
